@@ -1,7 +1,7 @@
-package com.example.demo.config.demosecurity.userservice;
+package com.example.demo.config.security.userservice;
 
-import com.example.demo.config.demosecurity.bean.Authority;
-import com.example.demo.config.demosecurity.bean.User;
+import com.example.demo.config.security.bean.Authority;
+import com.example.demo.config.security.bean.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class TestUserService implements UserDetailsService {
+public class SecurityUserServiceImpl implements UserDetailsService {
 
 
     @Override

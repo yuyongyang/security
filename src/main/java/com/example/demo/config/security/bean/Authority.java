@@ -1,4 +1,4 @@
-package com.example.demo.config.demosecurity.bean;
+package com.example.demo.config.security.bean;
 
 import org.springframework.security.core.GrantedAuthority;
 

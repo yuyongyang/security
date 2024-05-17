@@ -1,10 +1,9 @@
-package com.example.demo.config.demosecurity.bean;
+package com.example.demo.config.security.bean;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * 用户

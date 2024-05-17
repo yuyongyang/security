@@ -1,4 +1,4 @@
-package com.example.demo.config.demosecurity.hander;
+package com.example.demo.config.security.hander;
 
 import com.alibaba.fastjson2.JSONObject;
 import lombok.extern.slf4j.Slf4j;

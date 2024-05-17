@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.other;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
