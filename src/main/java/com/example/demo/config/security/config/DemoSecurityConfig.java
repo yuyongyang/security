@@ -11,10 +11,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.util.UrlPathHelper;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 适配器
@@ -81,7 +89,21 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                     // 指定登录的路由地址
                     form.loginPage("/mylogin");
                     form.permitAll();
-                });
+
+                }).logout(
+                        out->{
+                            out.logoutSuccessHandler(new LogoutSuccessHandler() {
+                                @Override
+                                public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                                   log.info("The User " + authentication.getName() + " has logged out");
+                                    UrlPathHelper helper = new UrlPathHelper();
+                                    String context = helper.getContextPath(request);
+                                    response.sendRedirect(context + "/mylogin");
+                                }
+                            }
+                                ).permitAll();
+                        }
+                );
 
 
     }
@@ -96,6 +118,8 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
     public JwtLoginFilter jwtLoginFilter() throws Exception {
         JwtLoginFilter jwtLoginFilter= new JwtLoginFilter();
         jwtLoginFilter.setAuthenticationManager(authenticationManager());
+        jwtLoginFilter.setAuthenticationSuccessHandler(successHandler);
+        jwtLoginFilter.setAuthenticationFailureHandler(failHandler);
         return  jwtLoginFilter;
     }
 
