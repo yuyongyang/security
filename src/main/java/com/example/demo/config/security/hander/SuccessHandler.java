@@ -2,6 +2,7 @@ package com.example.demo.config.security.hander;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.example.demo.config.security.utils.JwtUtil;
+import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -25,10 +26,13 @@ import java.util.UUID;
 @Component
 @Slf4j
 public class SuccessHandler implements AuthenticationSuccessHandler {
+
+
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        //loginuccessHandlerSingleModel( request,  response,  authentication);
-        loginuccessHandlerSingleSplit(request,  response,  authentication);
+           //loginuccessHandlerSingleModel( request,  response,  authentication);
+           loginuccessHandlerSingleSplit(request,  response,  authentication);
     }
 
     /**
@@ -57,7 +61,6 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
         String token = JwtUtil.createJWT(uuid,JSONObject.toJSONString(authentication) ,null);
         result.put("token",token);
         response.getWriter().write(JSONObject.toJSONString(result));
-
         response.setHeader("token", token);
 
     }
