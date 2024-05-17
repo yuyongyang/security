@@ -1,0 +1,54 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: demo
+  thymeleaf:
+    prefix: classpath:/static/
+  # 必须是。html 否则无法是被解析逻辑
+    suffix: .html
+    mode: HTML
+#  # 数据源配置注意数据库的名字
+#  datasource:
+#    driverClassName: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/private_user?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: 123456
+
+
+mybatis-plus:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/*Mapper.xml
+
+  type-aliases-package: com.example.demo.bean
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#arthas:
+#  # telnetPort、httpPort为 -1 ，则不listen telnet端口，为 0 ，则随机telnet端口
+#  # 如果是防止一个机器上启动多个 arthas端口冲突。可以配置为随机端口，或者配置为 -1，并且通过tunnel server来使用arthas。
+#  # ~/logs/arthas/arthas.log (用户目录下面)里可以找到具体端口日志
+#  telnetPort: -1
+#  httpPort: -1
+#  # 127.0.0.1只能本地访问，0.0.0.0则可网络访问，但是存在安全问题
+#  ip: 127.0.0.1
+#  appName: arthas_test
+#  # 默认情况下，会生成随机ID，如果 arthas agent配置了 appName，则生成的agentId会带上appName的前缀。
+#  agent-id: hsehdfsfghhwertyfad
+#  # tunnel-server地址
+#  tunnel-server: ws://127.0.0.1:7777/ws
+
+#security:
+#  ignoreUrl:
+#    - /test
+#    - /use
+#    - /testUser
+#    - /saveUser
+test:
+
+
+
+
+
+
