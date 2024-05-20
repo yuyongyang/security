@@ -26,9 +26,7 @@ import java.util.UUID;
 @Component
 @Slf4j
 public class SuccessHandler implements AuthenticationSuccessHandler {
-
-
-
+    
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
            //loginuccessHandlerSingleModel( request,  response,  authentication);

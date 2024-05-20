@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,20 @@ public class UserController {
 //    @Autowired
 //    private DeptMapper deptMapper;
 
-    @GetMapping("/saveUser2")
-    public @ResponseBody Object saveUser2() {
+    @GetMapping("/test1")
+    public @ResponseBody Object saveUser1() {
         return"ok";
     }
 
-    @GetMapping("/saveUser")
-    public Object saveUser() {
+    @GetMapping("/test2")
+    @PreAuthorize("hasRole('test')")
+    public @ResponseBody Object saveUser2() {
         return "权限测试";
+    }
+
+    @GetMapping("/test3")
+    public @ResponseBody Object saveUser3() {
+        return "权限测试3";
     }
 
 
