@@ -54,7 +54,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
         log.info("登录成功"+authentication);
         response.setContentType("application/json;charset=utf-8");
         Map<String,Object> result = new HashMap<>();
-        result.put("data","登录失败");
+        result.put("data","登录成功");
         String uuid = UUID.randomUUID().toString();
         String token = JwtUtil.createJWT(uuid,JSONObject.toJSONString(authentication) ,null);
         result.put("token",token);

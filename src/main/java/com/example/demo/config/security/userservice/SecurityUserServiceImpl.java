@@ -28,7 +28,8 @@ public class SecurityUserServiceImpl implements UserDetailsService {
         user.setUsername(username);
         user.setPassword(new BCryptPasswordEncoder().encode(username));
         List<Authority> list=new ArrayList<>();
-        list.add(new Authority("root"));
+        list.add(new Authority("test"));
+        user.setAuthorities(list);
         return user;
     }
 }

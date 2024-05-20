@@ -18,17 +18,19 @@ public class UserController {
 //    private DeptMapper deptMapper;
 
     @GetMapping("/test1")
+    @PreAuthorize("hasAnyAuthority('test','admin')")
     public @ResponseBody Object saveUser1() {
         return"ok";
     }
 
     @GetMapping("/test2")
-    @PreAuthorize("hasRole('test')")
+    @PreAuthorize("hasAnyAuthority('test2')")
     public @ResponseBody Object saveUser2() {
         return "权限测试";
     }
 
     @GetMapping("/test3")
+    @PreAuthorize("hasAnyAuthority('test3')")
     public @ResponseBody Object saveUser3() {
         return "权限测试3";
     }

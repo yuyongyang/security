@@ -16,7 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 // 日志打印
 @Slf4j
 @EnableWebSecurity
-// 用于拦截 使用注解校验权限开启
+// 用于拦截 使用注解校验权限开启15656068780
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 //@MapperScan(value = "com.example.demo.dao")
 public class StartApplication {
