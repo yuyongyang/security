@@ -19,6 +19,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        // 如果请求含有token
         return super.attemptAuthentication(request,response);
     }
 
