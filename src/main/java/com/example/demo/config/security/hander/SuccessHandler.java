@@ -58,6 +58,7 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
         String uuid = UUID.randomUUID().toString();
         String token = JwtUtil.createJWT(uuid,JSONObject.toJSONString(authentication) ,null);
         result.put("token",token);
+        result.put("code",200);
         response.getWriter().write(JSONObject.toJSONString(result));
         response.setHeader("token", token);
 

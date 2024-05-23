@@ -16,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.util.UrlPathHelper;
 
 import javax.annotation.Resource;
@@ -23,6 +26,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * 适配器
@@ -81,13 +85,14 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().disable()
                 // 授权接口
                 .authorizeRequests()
-                //.antMatchers(HttpMethod.POST,"/testUser").permitAll()
+                // 这里需要放行登录的静态问价地址
+                .antMatchers("/", "/static","/css/**","/js/**","/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin(form->
                 {
                     // 指定登录的路由地址
-                    form.loginPage("/mylogin");
+                    form.loginPage("/login");
                     form.permitAll();
 
                 }).logout(
@@ -123,6 +128,25 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
         return  jwtLoginFilter;
     }
 
+
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+        // 支持请求方式
+        config.addAllowedOriginPattern("*");
+        // 支持跨域
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE","OPTIONS"));
+        // cookie
+        config.setAllowCredentials(true);
+        config.addAllowedHeader("*");
+        // 允许请求头信息
+        config.addExposedHeader("*");
+        // 暴露的头部信息
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        // 添加地址映射
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
 
 
 

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 // RestContoller 会使重定向失效
 @Controller
+@Slf4j
 public class UserController {
 
 //    @Autowired
@@ -40,9 +42,10 @@ public class UserController {
      * 跳转到登录页面
      * @return 试图解析器
      */
-    @GetMapping("/mylogin")
+    @GetMapping("/login")
     public String login(){
-        return "/mylogin/login";
+        log.info("跳转到登录页面");
+        return "index";
     }
 
     /**
@@ -51,8 +54,7 @@ public class UserController {
      */
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("message", "Hello, Thymeleaf!");
-        return "loginout";
+        return "index";
     }
 
 
