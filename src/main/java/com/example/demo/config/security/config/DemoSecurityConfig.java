@@ -103,7 +103,7 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
                                    log.info("The User " + authentication.getName() + " has logged out");
                                     UrlPathHelper helper = new UrlPathHelper();
                                     String context = helper.getContextPath(request);
-                                    response.sendRedirect(context + "/mylogin");
+                                    response.sendRedirect(context + "/index");
                                 }
                             }
                                 ).permitAll();
